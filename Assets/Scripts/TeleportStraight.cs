@@ -36,7 +36,7 @@ public class TeleportStraight : MonoBehaviour
         }
 
         //왼쪽 컨트롤러의 One 버튼을 눌렀다면
-        if (ARAVRInput.Get(ARAVRInput.Button.One, ARAVRInput.Controller.LTouch))
+        else if (ARAVRInput.Get(ARAVRInput.Button.One, ARAVRInput.Controller.LTouch))
         {
             Ray ray = new Ray(ARAVRInput.LHandPosition, ARAVRInput.LHandDirection);
             RaycastHit hitInfo;
