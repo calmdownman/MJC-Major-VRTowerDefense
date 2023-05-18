@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class TeleportStraight : MonoBehaviour
 {
     public Transform teleportCircleUI;
     LineRenderer lr;
     Vector3 originScale = Vector3.one* 0.02f; //최초의 텔레포트 UI 크기
+    public bool isWarp = false; //워프 사용 여부
+    public float warpTime = 0.1f; //워프레 걸리는 시간
+    public PostProcessVolume postV; //사용하고 있늠ㄴ 포스트 프로세싱 볼륨 컴포넌트
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +29,20 @@ public class TeleportStraight : MonoBehaviour
         else if (ARAVRInput.GetUp(ARAVRInput.Button.One, ARAVRInput.Controller.LTouch)) 
         {
             lr.enabled = false;
+
             if(teleportCircleUI.gameObject.activeSelf)
             {  
-                GetComponent<CharacterController>().enabled = false;
-                //텔레포트 UI위치로 순간 이동
-                transform.position = teleportCircleUI.position + Vector3.up;
-                GetComponent<CharacterController>().enabled = true;
+                if(!isWarp) //워프 기능 사용이 아닐 때 순간 이동
+                {
+                    GetComponent<CharacterController>().enabled = false;
+                    //텔레포트 UI위치로 순간 이동
+                    transform.position = teleportCircleUI.position + Vector3.up;
+                    GetComponent<CharacterController>().enabled = true;
+                }
+                else
+                {
+                    StartCoroutine(Warp());
+                } 
             }
             teleportCircleUI.gameObject.SetActive(false);
         }
@@ -61,5 +73,27 @@ public class TeleportStraight : MonoBehaviour
                 teleportCircleUI.gameObject.SetActive(false);
             }
         }
+    }
+    IEnumerator Warp()
+    {
+        MotionBlur blur; //워프 느낌을 표현하는 모션블러
+        Vector3 pos = transform.position; //워프 시작점
+        Vector3 targetPos = teleportCircleUI.position + Vector3.up; //목적지(워프 끝점)
+        float curretTime = 0; //워프 경과 시간
+        postV.profile.TryGetSettings<MotionBlur>(out blur); //포스트 프로세싱에서 사용 중인 프로파일 얻어오기
+        blur.active = true; //워프 시작 전 블러 켜기
+        GetComponent<CharacterController>().enabled = false; //플레이어 움직임 X
+
+        //경과 시간이 워프보다 짧은 시간 동안 이동 처리
+        while(curretTime < warpTime)
+        {
+            curretTime += Time.deltaTime; //경과 시간 흐르게 하기
+            //워프 시작점에서 도착점에서 도착하기 위해 워프 시간 동안 이동
+            transform.position = Vector3.Lerp(pos, targetPos, curretTime / warpTime);
+            yield return null; //코루틴 대기
+        }
+        transform.position = teleportCircleUI.position + Vector3.up; //텔레포트 위치로 이동
+        GetComponent<CharacterController>().enabled = true; //캐릭터 컨트롤러 다시 켜기
+        blur.active = false; //포스트 효과
     }
 }
