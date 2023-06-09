@@ -41,7 +41,7 @@ Shader "Crosshair"
         Cull Off
         Lighting Off
         ZWrite Off
-        ZTest Always //월드 스페이스 깊이감
+        ZTest Always
         Blend One OneMinusSrcAlpha
         ColorMask [_ColorMask]
 
