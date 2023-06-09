@@ -24,7 +24,7 @@ public class Tower : MonoBehaviour
             
             if (_hp <= 0)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject); //엔딩씬 넘어가기
             }
         }
     }
