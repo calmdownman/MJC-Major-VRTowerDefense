@@ -74,8 +74,7 @@ public class GrabItem : MonoBehaviour
         Quaternion deltaRotation = ARAVRInput.RHand.rotation * Quaternion.Inverse(prevRot);
         prevRot = ARAVRInput.RHand.rotation;
 
-        //버
-        if(ARAVRInput.GetUp(ARAVRInput.Button.HandTrigger,ARAVRInput.Controller.RTouch))
+        if (ARAVRInput.GetUp(ARAVRInput.Button.HandTrigger,ARAVRInput.Controller.RTouch)) //버튼을 놓았다면
         {
             isGrabbing = false; //잡지 않은 상태로 전환
             grabbedObject.GetComponent<Rigidbody>().isKinematic=false; //물리 기능 활성화
