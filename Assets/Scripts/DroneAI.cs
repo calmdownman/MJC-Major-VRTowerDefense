@@ -13,7 +13,7 @@ public class DroneAI : MonoBehaviour
         Damage,
         Die 
     }
-    DroneState state = DroneState.Idle; //초기 시작 상태를 Idle
+    DroneState state = DroneState.Move; //초기 시작 상태를 Idle
     public float idleDelayTime = 2; //대기 상태의 지속 시간
     float currentTime; //경과 시간
     public float moveSpeed = 1; //이동 속도
