@@ -46,12 +46,6 @@ public class Tower : MonoBehaviour
         damageImage.enabled= false; //처음에는 비활성화
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator DamageEvent()
     {
         damageImage.enabled= true; //피격 UI 실행
