@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleDelayTime: 2
-  moveSpeed: 5
+  moveSpeed: 1
   attackRange: 3
   attackDelayTime: 2
   hp: 3
