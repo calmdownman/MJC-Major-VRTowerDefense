@@ -67,6 +67,7 @@ MonoBehaviour:
   hpMax: 2
   moveSpeed: 5
   idleDelayTime: 2
+  hpSlider: {fileID: 4517005468831140848}
 --- !u!195 &3930924867919253868
 NavMeshAgent:
   m_ObjectHideFlags: 0

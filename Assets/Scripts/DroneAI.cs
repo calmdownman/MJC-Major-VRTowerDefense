@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class DroneAI : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class DroneAI : MonoBehaviour
     public int hpMax = 3;
     public float moveSpeed = 1; //이동 속도
     public float idleDelayTime = 2; //대기 상태의 지속 시간
+    public Slider hpSlider;
 
     [Header("폭발효과")]
     Transform explosion;
@@ -53,6 +55,7 @@ public class DroneAI : MonoBehaviour
             case DroneState.Move: Move();  break;
             case DroneState.Attack: Attack(); break; 
         }
+        hpSlider.value= (float)hp/ (float)hpMax;
     }
     private void Idle()
     {
