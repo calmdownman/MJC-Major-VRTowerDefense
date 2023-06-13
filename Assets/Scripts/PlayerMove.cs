@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
     public float gravity = -20;
     float yVelocity = 0;
     public float jumpPower = 5f;
+    public Transform towerPos;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,12 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         //사용자 입력을 받는다.
+        if(Input.GetKeyUp(KeyCode.R)){
+            cc.enabled = false;
+            transform.position = towerPos.position;
+            cc.enabled = true;
+        }
+
         float h = ARAVRInput.GetAxis("Horizontal");
         float v = ARAVRInput.GetAxis("Vertical");
         //방향을 만든다.
@@ -33,10 +40,10 @@ public class PlayerMove : MonoBehaviour
         {
             yVelocity = 0;
         }
-        if(ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
+        /*if(ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
         {
             yVelocity = jumpPower;
-        }
+        }*/
         dir.y = yVelocity;
         //이동
         cc.Move(dir * speed * Time.deltaTime); //이동한다

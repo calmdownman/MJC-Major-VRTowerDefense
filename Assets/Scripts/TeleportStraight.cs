@@ -6,7 +6,8 @@ using UnityEngine.Rendering.PostProcessing;
 public class TeleportStraight : MonoBehaviour
 {
     public GameObject[] obstacles;
-    
+
+    public Transform teleport;
     public Transform teleportCircleUI;
     LineRenderer lr;
     Vector3 originScale = Vector3.one * 0.02f; //최초 텔레포트 UI크기

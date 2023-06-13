@@ -14,15 +14,19 @@ public class DroneAI : MonoBehaviour
         Die 
     }
     DroneState state = DroneState.Idle; //초기 시작 상태를 Idle
-    public float idleDelayTime = 2; //대기 상태의 지속 시간
+    
     float currentTime; //경과 시간
-    public float moveSpeed = 1; //이동 속도
+    
     Transform tower; //타워 위치
     NavMeshAgent agent; //길 찾기를 수행할 내비게이션 메시 에이전트
     public float attackRange = 3; //공격 범위
     public float attackDelayTime = 2; //공격 지연 시간
-    [SerializeField]
-    private int hp = 3;
+
+    [Header("적 정보")]
+    public int hp = 3;
+    public int hpMax = 3;
+    public float moveSpeed = 1; //이동 속도
+    public float idleDelayTime = 2; //대기 상태의 지속 시간
 
     [Header("폭발효과")]
     Transform explosion;
@@ -82,6 +86,7 @@ public class DroneAI : MonoBehaviour
             currentTime = 0;
         }
     }
+
     IEnumerator Damage()
     {
         agent.enabled = false; //길찾기 중지
