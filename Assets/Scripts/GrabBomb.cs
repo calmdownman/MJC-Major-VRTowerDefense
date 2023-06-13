@@ -37,7 +37,7 @@ public class GrabBomb : MonoBehaviour
     void TryGrab()
     {
         //[Grab] 버튼을 누르면 일정 영역 안에 있는 폭탄을 집는다.
-        if (ARAVRInput.GetDown(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.RTouch))
+        if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
         {
             if(isRemoteGrab) //원거리 물체잡기를 사용한다면
             {
@@ -100,7 +100,7 @@ public class GrabBomb : MonoBehaviour
         //이전 회전 저장
         prevRot = ARAVRInput.RHand.rotation;
         //버튼을 놓았다면..
-        if (ARAVRInput.GetUp(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.RTouch))
+        if (ARAVRInput.GetUp(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
         {
             isGrabbing = false; //잡지 않은 상태로 전환
             grabbedObject.GetComponent<Rigidbody>().isKinematic = false; // 물리 기능 활성화

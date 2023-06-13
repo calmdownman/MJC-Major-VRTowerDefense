@@ -22,7 +22,7 @@ public class Gun : MonoBehaviour
     {
         ARAVRInput.DrawCrosshair(crosshair);
         //사용자가 IndexTrigger 버튼을 누르면
-        if(ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger))
+        if(ARAVRInput.GetDown(ARAVRInput.Button.One))
         {
             //컨트롤러의 진동 재생
             ARAVRInput.PlayVibration(ARAVRInput.Controller.RTouch);

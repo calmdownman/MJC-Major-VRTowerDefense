@@ -5,13 +5,15 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class TeleportStraight : MonoBehaviour
 {
+    public GameObject[] obstacles;
+    
     public Transform teleportCircleUI;
     LineRenderer lr;
     Vector3 originScale = Vector3.one * 0.02f; //최초 텔레포트 UI크기
-    public bool isWarp = false; //워프 사용 여부
+    /*public bool isWarp = false; //워프 사용 여부
     public float warpTime = 0.1f; //워프에 걸리는 시간
-    public PostProcessVolume post; // 사용하고 있는 포스트 프로세싱 볼륨 컴포넌트
-    // Start is called before the first frame update
+    public PostProcessVolume post; // 사용하고 있는 포스트 프로세싱 볼륨 컴포넌트*/
+ 
     void Start()
     {
         //시작할때 비활성화
@@ -22,17 +24,17 @@ public class TeleportStraight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ARAVRInput.GetDown(ARAVRInput.Button.One, ARAVRInput.Controller.LTouch))
+        if (ARAVRInput.GetDown(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.LTouch))
         {
             lr.enabled = true;
         }
-        else if(ARAVRInput.GetUp(ARAVRInput.Button.One, ARAVRInput.Controller.LTouch))
+        else if(ARAVRInput.GetUp(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.LTouch))
         {
             lr.enabled = false;
 
             if(teleportCircleUI.gameObject.activeSelf)
             {
-                if(isWarp == false) //워프 기능 사용이 아닐 때 순간 이동
+                /*if(isWarp == false) //워프 기능 사용이 아닐 때 순간 이동
                 {
                     GetComponent<CharacterController>().enabled = false;
                     //텔레포트 UI위치로 순간 이동
@@ -42,14 +44,14 @@ public class TeleportStraight : MonoBehaviour
                 else // 워프 기능 사용할 때는 Warp() 코루틴 함수 호출
                 {
                     StartCoroutine(Warp());
-                }
-               
+                }*/
+                Instantiate(obstacles[GameManager.Instance.wallIndex], teleportCircleUI.position, obstacles[GameManager.Instance.wallIndex].transform.rotation);
             }
 
             teleportCircleUI.gameObject.SetActive(false);
         }
         //왼쪽 컨트롤러의 One버튼을 눌렀다면
-        else if (ARAVRInput.Get(ARAVRInput.Button.One, ARAVRInput.Controller.LTouch))
+        else if (ARAVRInput.Get(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.LTouch))
         {
             Ray ray = new Ray(ARAVRInput.LHandPosition, ARAVRInput.LHandDirection);
             RaycastHit hitInfo;
@@ -75,7 +77,7 @@ public class TeleportStraight : MonoBehaviour
         }
 
     }
-    IEnumerator Warp()
+    /*IEnumerator Warp()
     {
         MotionBlur blur; // 워프 느낌을 표현하는 모션블러
         Vector3 pos = transform.position; // 워프 시작점
@@ -96,5 +98,5 @@ public class TeleportStraight : MonoBehaviour
         transform.position = teleportCircleUI.position + Vector3.up; //텔레포트 위치로 이동
         GetComponent<CharacterController>().enabled = true; // 캐릭터 컨트롤러 다시 켜기
         blur.active = false; //포스트 효과 
-    }
+    }*/
 }

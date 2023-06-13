@@ -56,12 +56,12 @@ public class DroneAI : MonoBehaviour
         if (currentTime > idleDelayTime) //경과시간이 지났다면
         {
             state = DroneState.Move; //무브 상태로 전환  
+            agent.enabled = true;
         }
     }
     private void Move()
     {
         agent.SetDestination(tower.position); //타워를 향해 이동
-        agent.enabled = true;
 
         //공격 범위 안에 들어오면 공격 상태로 전환
         if (Vector3.Distance(transform.position,tower.position) < attackRange)
