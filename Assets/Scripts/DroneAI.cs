@@ -13,7 +13,7 @@ public class DroneAI : MonoBehaviour
         Damage,
         Die 
     }
-    DroneState state = DroneState.Move; //초기 시작 상태를 Idle
+    DroneState state = DroneState.Idle; //초기 시작 상태를 Idle
     public float idleDelayTime = 2; //대기 상태의 지속 시간
     float currentTime; //경과 시간
     public float moveSpeed = 1; //이동 속도
@@ -55,16 +55,16 @@ public class DroneAI : MonoBehaviour
         currentTime += Time.deltaTime; //시간을 누적
         if (currentTime > idleDelayTime) //경과시간이 지났다면
         {
-            state = DroneState.Move; //무브 상태로 전환
-            agent.enabled = true;
+            state = DroneState.Move; //무브 상태로 전환  
         }
     }
     private void Move()
     {
         agent.SetDestination(tower.position); //타워를 향해 이동
-        
+        agent.enabled = true;
+
         //공격 범위 안에 들어오면 공격 상태로 전환
-        if(Vector3.Distance(transform.position,tower.position) < attackRange)
+        if (Vector3.Distance(transform.position,tower.position) < attackRange)
         {
             state= DroneState.Attack;
             

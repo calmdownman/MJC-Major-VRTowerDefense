@@ -41,7 +41,7 @@ public class Tower : MonoBehaviour
         _hp= initialHP;
         //카메라의 nearClipPlane 값을 기억해둔다
         float z = Camera.main.nearClipPlane + 0.01f;
-        damageUI.parent = Camera.main.transform; //damageUI 부모를 메인 카메라로
+        damageUI.SetParent(Camera.main.transform); //damageUI 부모를 메인 카메라로
         damageUI.localPosition = new Vector3(0,0,z);
         damageImage.enabled= false; //처음에는 비활성화
     }
