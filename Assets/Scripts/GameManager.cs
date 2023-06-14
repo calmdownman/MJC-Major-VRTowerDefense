@@ -14,9 +14,21 @@ public class GameManager : MonoBehaviour
         GameComplete,
         GameOver
     }
+
+    [Header("#Game Control")]
+    public float gameTime;
+    public float maxGameTime = 20f;
     public int wallIndex;
 
+    private int gameLevel;
+    public int GameLevel
+    {
+        set { gameLevel = value; }
+        get { return gameLevel;}
+    }
+
     public GameState gState; //게임 상태 상수
+
 
     void Awake()
     {
@@ -24,17 +36,12 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        gameLevel = 1;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         gState = GameState.Run;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

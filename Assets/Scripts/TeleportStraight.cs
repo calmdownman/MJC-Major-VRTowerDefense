@@ -22,9 +22,11 @@ public class TeleportStraight : MonoBehaviour
         lr = GetComponent<LineRenderer>(); //라인 렌더러 컴포넌트 
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //스테이지 클리어 후 게임 일시정지 시 작동 
+        if (GameManager.Instance.gState != GameManager.GameState.Pause) return;
+
         if (ARAVRInput.GetDown(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.LTouch))
         {
             lr.enabled = true;

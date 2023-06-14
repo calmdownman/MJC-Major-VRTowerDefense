@@ -24,11 +24,12 @@ public class DroneAI : MonoBehaviour
     public float attackDelayTime = 2; //공격 지연 시간
 
     [Header("적 정보")]
-    public int hp = 3;
-    public int hpMax = 3;
-    public float moveSpeed = 1; //이동 속도
-    public float idleDelayTime = 2; //대기 상태의 지속 시간
+    private int hp;
+    public int hpMax;
+    public float moveSpeed; //이동 속도
+    public float idleDelayTime; //대기 상태의 지속 시간
     public Slider hpSlider;
+    public Text level,hpText;
 
     [Header("폭발효과")]
     Transform explosion;
@@ -37,6 +38,9 @@ public class DroneAI : MonoBehaviour
 
     private void Start()
     {
+        hpMax *= GameManager.Instance.GameLevel;
+        moveSpeed *= GameManager.Instance.GameLevel*1.25f;
+        hp = hpMax;
         tower = GameObject.Find("Tower").transform; //타워 찾기
         agent = GetComponent<NavMeshAgent>(); //내비메쉬에이전트 컴포넌트
         agent.enabled = false; //비활성화
@@ -56,6 +60,8 @@ public class DroneAI : MonoBehaviour
             case DroneState.Attack: Attack(); break; 
         }
         hpSlider.value= (float)hp/ (float)hpMax;
+        level.text = $"LV. {GameManager.Instance.GameLevel}";
+        hpText.text = $"HP {hp}/{hpMax}";
     }
     private void Idle()
     {

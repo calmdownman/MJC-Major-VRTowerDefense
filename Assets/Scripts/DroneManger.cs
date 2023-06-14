@@ -5,8 +5,8 @@ using UnityEngine;
 public class DroneManger : MonoBehaviour
 {
     //랜덤 시간의 범위
-    public float minTime = 1;
-    public float maxTime = 5;
+    private float minTime = 1;
+    private float[] maxTime= {5f,4f,3f,2.5f,2f,1.5f};
     float createTime; //생성 시간
     float currentTime; //경과 시간
     public Transform[] spawnPoints; //드론 생성 위치
@@ -14,7 +14,7 @@ public class DroneManger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        createTime = Random.Range(minTime, maxTime); //생성 시간을 랜덤 범위에서 설정
+        createTime = Random.Range(minTime, maxTime[GameManager.Instance.GameLevel-1]); //생성 시간을 랜덤 범위에서 설정
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class DroneManger : MonoBehaviour
             int index = Random.Range(0, spawnPoints.Length); //드론 위치 랜덤 설정
             drone.transform.position = spawnPoints[index].position;
             currentTime = 0; //경과 시간 초기화
-            createTime = Random.Range(minTime, maxTime); //생성 시간 재할당
+            createTime = Random.Range(minTime, maxTime[GameManager.Instance.GameLevel - 1]); //생성 시간 재할당
         }
     }
 }
