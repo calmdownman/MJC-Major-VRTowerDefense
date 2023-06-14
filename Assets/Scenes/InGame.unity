@@ -6503,9 +6503,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uB0A8\uC740 \uB4DC\uB860 \uBAA8\uB450 \uCC98\uCE58 \uD6C4 \uB2E4\uC74C
-    \uC2A4\uD14C\uC774\uC9C0\uC5D0 \uC0AC\uC6A9 \uD560 \uC544\uC774\uD15C\uC744 \uC120\uD0DD\uD574
-    \uC8FC\uC138\uC694."
+  m_Text: "\uB0A8\uC740 \uB4DC\uB860\uC744 \uBAA8\uB450 \uCC98\uCE58\uD55C \uD6C4
+    \uB2E4\uC74C \uC2A4\uD14C\uC774\uC9C0\uC5D0 \uC0AC\uC6A9 \uD560 \uC544\uC774\uD15C\uC744
+    \uC120\uD0DD\uD574 \uC8FC\uC138\uC694."
 --- !u!222 &1843120117
 CanvasRenderer:
   m_ObjectHideFlags: 0
