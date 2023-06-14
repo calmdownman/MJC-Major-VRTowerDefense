@@ -25,16 +25,13 @@ public class Bomb : MonoBehaviour
         Collider[] drones = Physics.OverlapSphere(transform.position, range, layerMask);
         foreach (Collider drone in drones)
         {
+            UIManager.Instance.UpdateKillText(++GameManager.Instance.kill);
+            UIManager.Instance.UpdateDroneCnt(--UIManager.Instance.DroneCnt);
             Destroy(drone.gameObject);
         }
         explosion.position = transform.position; //폭발 효과의 위치 지정
         expEffect.Play(); //이첵트 재생
         expAudio.Play(); //이펙트 사운드 재생
         Destroy(gameObject); //폭탄 없애기
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

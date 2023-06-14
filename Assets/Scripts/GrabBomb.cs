@@ -17,12 +17,6 @@ public class GrabBomb : MonoBehaviour
     public bool isRemoteGrab = true;
     public float remoteGrabDistance = 20f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -87,7 +81,7 @@ public class GrabBomb : MonoBehaviour
     }
     void TryUngrab()
     {
-        Vector3 throwDirection = (ARAVRInput.RHandPosition - prevPos); //던질 방향
+        //Vector3 throwDirection = (ARAVRInput.RHandPosition - prevPos); //던질 방향
         
         prevPos = ARAVRInput.RHandPosition;
         //쿼터니온 공식

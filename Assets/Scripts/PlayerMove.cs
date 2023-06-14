@@ -20,11 +20,19 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //사용자 입력을 받는다.
-        if(Input.GetKeyUp(KeyCode.R)){
-            cc.enabled = false;
-            transform.position = towerPos.position;
-            cc.enabled = true;
+        if (cc.transform.position.y < 2 && GameManager.Instance.gState == GameManager.GameState.Run)
+        {
+            Debug.Log("떨어짐");
+            UIManager.Instance.SetActiveCauitionUI(true);
+            
+            //사용자 입력을 받는다.
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                UIManager.Instance.SetActiveCauitionUI(false);
+                cc.enabled = false;
+                transform.position = towerPos.position;
+                cc.enabled = true;
+            }
         }
 
         float h = ARAVRInput.GetAxis("Horizontal");

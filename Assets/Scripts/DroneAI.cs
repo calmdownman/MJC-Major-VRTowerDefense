@@ -120,6 +120,8 @@ public class DroneAI : MonoBehaviour
         }
         else
         {
+            UIManager.Instance.UpdateKillText(++GameManager.Instance.kill);
+            UIManager.Instance.UpdateDroneCnt(--UIManager.Instance.DroneCnt);
             explosion.position = transform.position; //폭발 효과 위치 지정
             expEffect.Play();
             expAudio.Play();

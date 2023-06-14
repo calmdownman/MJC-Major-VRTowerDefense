@@ -10,7 +10,7 @@ public class Tower : MonoBehaviour
 
     public Transform damageUI;
     public Image damageImage;
-    public int initialHP = 10; //타워의 최초 체력 
+    public int maxHP = 10; //타워의 최초 체력 
     int _hp = 0; //내부 체력
     public float damageTime = 0.1f;
     public int HP
@@ -38,7 +38,7 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _hp= initialHP;
+        _hp= maxHP;
         //카메라의 nearClipPlane 값을 기억해둔다
         float z = Camera.main.nearClipPlane + 0.01f;
         damageUI.SetParent(Camera.main.transform); //damageUI 부모를 메인 카메라로
@@ -51,5 +51,6 @@ public class Tower : MonoBehaviour
         damageImage.enabled= true; //피격 UI 실행
         yield return new WaitForSeconds(damageTime);
         damageImage.enabled= false; //피격 UI 해제
+        UIManager.Instance.UpdateTowerHP(_hp, maxHP);
     }
 }

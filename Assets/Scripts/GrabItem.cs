@@ -69,7 +69,7 @@ public class GrabItem : MonoBehaviour
 
     void TryUnGrab()
     {
-        Vector3 throwDirection = (ARAVRInput.RHandPosition - prevPos); //带龙 规氢
+        // Vector3 throwDirection = (ARAVRInput.RHandPosition - prevPos); //带龙 规氢
         prevPos = ARAVRInput.RHandPosition;
         Quaternion deltaRotation = ARAVRInput.RHand.rotation * Quaternion.Inverse(prevRot);
         prevRot = ARAVRInput.RHand.rotation;
