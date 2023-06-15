@@ -38,7 +38,6 @@ public class UIManager : MonoBehaviour
 
     [Header("숫자 조절")]
     public int maxGameTime = 60;
-    public float blinckTime = 0.5f;
     
     private int wallIndex;
     private int droneCnt;
@@ -66,10 +65,12 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        StartTimer();
+        maxGameTime = 60;
+        droneCnt = 0;
         pauseWindow.SetActive(false);
         txt_Caution.SetActive(false);
         alert_NS.SetActive(false);
+        StartTimer();
     }
 
     public void StartTimer() 

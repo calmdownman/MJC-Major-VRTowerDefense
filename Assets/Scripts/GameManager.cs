@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
         Run,
         Pause,
         ShoppingWall,
-        GameComplete,
         GameOver
     }
     public GameState gState; //게임 상태 상수
@@ -37,7 +36,6 @@ public class GameManager : MonoBehaviour
     [Header("#Player Info")]
     private int gameLevel = 1;
     public int kill = 0;
-    public int bombEA;
 
     public int GameLevel
     {
@@ -59,6 +57,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gState = GameState.Ready;
+        GameLevel = 1;
+        kill = 0;
+        Time.timeScale = 1f;
         gState = GameState.Run;
     }
 }

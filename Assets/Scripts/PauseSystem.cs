@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PauseSystem : MonoBehaviour
 {
     private int remain_Count;
+    private int randomSelect;
+    public Transform[] bombPositions;
+    public GameObject bomb;
     // Update is called once per frame
     void Update()
     {
@@ -46,6 +50,13 @@ public class PauseSystem : MonoBehaviour
             UIManager.Instance.UpdateRemainCntText(remain_Count);
             Tower.Instance.HP = Tower.Instance.maxHP;
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha5) && remain_Count > 0)
+        {
+            remain_Count--;
+            UIManager.Instance.UpdateItemText("ÆøÅº Ãß°¡");
+            UIManager.Instance.UpdateRemainCntText(remain_Count);
+            Instantiate(bomb, bombPositions[RanmdomPosition()].position, Quaternion.identity);
+        }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
             this.gameObject.SetActive(false);
@@ -54,6 +65,21 @@ public class PauseSystem : MonoBehaviour
             GameManager.Instance.gState = GameManager.GameState.Run;
             UIManager.Instance.StartTimer();
         }
+    }
+
+    public int RanmdomPosition()
+    {
+        while (true)
+        {
+            int randomNum = Random.Range(0, bombPositions.Length);
+            
+            if (randomNum != randomSelect)
+            {
+                randomSelect = randomNum;
+                break;
+            }
+        }
+        return randomSelect;
     }
 
     private void OnEnable()
