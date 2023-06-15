@@ -20,10 +20,21 @@ public class UIManager : MonoBehaviour
 
     private static UIManager m_instance; // 싱글톤이 할당될 변수
 
-    public GameObject pauseWindow, txt_Caution, alert_NS,alert_Tower;
-    public Text txt_Level, txt_Kill,txt_GameTime,txt_DroneCnt,txt_SelectItem,txt_RemainCount;
-    public Text txt_NoChoiceCaution;
+    [Header("게임 오브젝트 모음")]
+    public GameObject pauseWindow;
+    public GameObject txt_Caution;
+    public GameObject alert_NS;
+    public GameObject alert_Tower;
     public Slider towerHpBar;
+
+    [Header("텍스트 모음")]
+    public Text txt_Level;
+    public Text txt_Kill;
+    public Text txt_GameTime;
+    public Text txt_DroneCnt;
+    public Text txt_SelectItem;
+    public Text txt_RemainCount;
+    public Text txt_NoChoice;
 
     [Header("숫자 조절")]
     public int maxGameTime = 60;
@@ -64,6 +75,24 @@ public class UIManager : MonoBehaviour
     public void StartTimer() 
     {
         StartCoroutine(Timer(maxGameTime));
+    }
+
+    public void StartNoChoice()
+    {
+        StopCoroutine(NoChoice());
+        StartCoroutine(NoChoice());
+    }
+
+    IEnumerator NoChoice()
+    {
+        txt_NoChoice.color = new Color(txt_NoChoice.color.r, txt_NoChoice.color.g, txt_NoChoice.color.b, 1);
+        
+        while (txt_NoChoice.color.a > 0.0f)
+        {
+
+            txt_NoChoice.color = new Color(txt_NoChoice.color.r, txt_NoChoice.color.g, txt_NoChoice.color.b, txt_NoChoice.color.a - (Time.deltaTime / 1f));
+            yield return null;
+        } 
     }
 
     IEnumerator Timer(int maxTime)
@@ -113,7 +142,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateRemainCntText(int cnt)
     {
-        txt_RemainCount.text = $"남은 횟수 : {cnt}'";
+        txt_RemainCount.text = $"남은 횟수 : {cnt}";
     }
 
     public void SetActiveCauitionUI(bool active)

@@ -39,7 +39,7 @@ public class DroneAI : MonoBehaviour
     private void Start()
     {
         hpMax *= GameManager.Instance.GameLevel;
-        moveSpeed *= GameManager.Instance.GameLevel*1.25f;
+        moveSpeed *= GameManager.Instance.GameLevel*1.15f;
         hp = hpMax;
         tower = GameObject.Find("Tower").transform; //타워 찾기
         agent = GetComponent<NavMeshAgent>(); //내비메쉬에이전트 컴포넌트

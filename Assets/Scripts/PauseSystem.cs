@@ -30,11 +30,12 @@ public class PauseSystem : MonoBehaviour
         {
             if (UIManager.Instance.maxGameTime < 30) 
             {
-
+                UIManager.Instance.StartNoChoice();
                 return;
             }
 
             remain_Count--;
+            UIManager.Instance.maxGameTime -= 5;
             UIManager.Instance.UpdateItemText("시간 단축");
             UIManager.Instance.UpdateRemainCntText(remain_Count); 
         }
