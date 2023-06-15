@@ -20,11 +20,15 @@ public class UIManager : MonoBehaviour
 
     private static UIManager m_instance; // 싱글톤이 할당될 변수
 
-    public GameObject pauseWindow, txt_Caution, alert_NS;
-    public Text txt_Level, txt_Kill,txt_GameTime,txt_DroneCnt;
+    public GameObject pauseWindow, txt_Caution, alert_NS,alert_Tower;
+    public Text txt_Level, txt_Kill,txt_GameTime,txt_DroneCnt,txt_SelectItem,txt_RemainCount;
+    public Text txt_NoChoiceCaution;
     public Slider towerHpBar;
 
+    [Header("숫자 조절")]
     public int maxGameTime = 60;
+    public float blinckTime = 0.5f;
+    
     private int wallIndex;
     private int droneCnt;
 
@@ -102,6 +106,16 @@ public class UIManager : MonoBehaviour
         towerHpBar.value = (float)hp/ (float)maxHp;
     }
 
+    public void UpdateItemText(string item_Name)
+    {
+        txt_SelectItem.text = $"선택한 아이템 : '{item_Name}'";
+    }
+
+    public void UpdateRemainCntText(int cnt)
+    {
+        txt_RemainCount.text = $"남은 횟수 : {cnt}'";
+    }
+
     public void SetActiveCauitionUI(bool active)
     {
         txt_Caution.SetActive(active);
@@ -110,15 +124,5 @@ public class UIManager : MonoBehaviour
     public void SetActivePauseUI(bool active)
     {
         pauseWindow.SetActive(active);
-    }
-
-    public void OnClickHorizonWall()
-    {
-        wallIndex = 0;
-    }
-
-    public void OnClickVerticalWall()
-    {
-        wallIndex = 1;
     }
 }

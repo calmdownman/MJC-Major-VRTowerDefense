@@ -30,7 +30,8 @@ public class DroneManger : MonoBehaviour
             drone.transform.position = spawnPoints[index].position;
             UIManager.Instance.UpdateDroneCnt(++UIManager.Instance.DroneCnt);
             currentTime = 0; //경과 시간 초기화
-            createTime = Random.Range(minTime, maxTime[GameManager.Instance.GameLevel - 1]); //생성 시간 재할당
+            int levelTime = Mathf.Min(GameManager.Instance.GameLevel - 1, 5);
+            createTime = Random.Range(minTime, maxTime[levelTime]); //생성 시간 재할당
         }
     }
 }

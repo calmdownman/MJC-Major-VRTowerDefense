@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
 
     public Transform damageUI;
     public Image damageImage;
+    public GameObject damageText;
     public int maxHP = 10; //타워의 최초 체력 
     int _hp = 0; //내부 체력
     public float damageTime = 0.1f;
@@ -48,8 +49,10 @@ public class Tower : MonoBehaviour
 
     IEnumerator DamageEvent()
     {
+        damageText.SetActive(true);
         damageImage.enabled= true; //피격 UI 실행
         yield return new WaitForSeconds(damageTime);
+        damageText.SetActive(false);
         damageImage.enabled= false; //피격 UI 해제
         UIManager.Instance.UpdateTowerHP(_hp, maxHP);
     }

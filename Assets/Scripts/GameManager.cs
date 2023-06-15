@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         Ready,
         Run,
         Pause,
-        Shopping,
+        ShoppingWall,
         GameComplete,
         GameOver
     }

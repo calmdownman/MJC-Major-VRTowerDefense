@@ -25,7 +25,7 @@ public class TeleportStraight : MonoBehaviour
     void Update()
     {
         //스테이지 클리어 후 게임 일시정지 시 작동 
-        if (GameManager.Instance.gState != GameManager.GameState.Shopping) return;
+        if (GameManager.Instance.gState != GameManager.GameState.ShoppingWall) return;
 
         if (ARAVRInput.GetDown(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.LTouch))
         {
@@ -49,6 +49,7 @@ public class TeleportStraight : MonoBehaviour
                     StartCoroutine(Warp());
                 }*/
                 Instantiate(obstacles[UIManager.Instance.WallIndex], teleportCircleUI.position, obstacles[UIManager.Instance.WallIndex].transform.rotation);
+                UIManager.Instance.UpdateItemText("없음");
                 GameManager.Instance.gState = GameManager.GameState.Pause;
             }
 
