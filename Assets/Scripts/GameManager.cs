@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     [Header("#Player Info")]
     private int gameLevel = 1;
     public int kill = 0;
+    public int playerDamage = 1;
 
     public int GameLevel
     {
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gState = GameState.Ready;
+        playerDamage = 1;
         GameLevel = 1;
         kill = 0;
         Time.timeScale = 1f;

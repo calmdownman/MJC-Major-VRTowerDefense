@@ -36,6 +36,7 @@ public class UIManager : MonoBehaviour
     public Text txt_SelectItem;
     public Text txt_RemainCount;
     public Text txt_NoChoice;
+    public Text txt_Damage;
 
     [Header("숫자 조절")]
     public int maxGameTime;
@@ -66,7 +67,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        maxGameTime = 60;
+        maxGameTime = 5;
         droneCnt = 0;
         pauseWindow.SetActive(false);
         txt_Caution.SetActive(false);
@@ -121,7 +122,12 @@ public class UIManager : MonoBehaviour
     {
         txt_GameTime.text = time.ToString("D2");
     }
- 
+
+    public void UpdateDamage()
+    {
+        txt_Damage.text = $"DMG : {GameManager.Instance.playerDamage}";
+    }
+
     public void UpdateKillText(int kill)
     {
         txt_Kill.text = kill.ToString();

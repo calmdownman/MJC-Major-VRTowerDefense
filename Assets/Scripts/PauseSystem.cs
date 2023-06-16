@@ -57,6 +57,15 @@ public class PauseSystem : MonoBehaviour
             UIManager.Instance.UpdateRemainCntText(remain_Count);
             Instantiate(bomb, bombPositions[RanmdomPosition()].position, Quaternion.identity);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha6) && remain_Count > 0)
+        {
+            remain_Count--;
+            UIManager.Instance.UpdateItemText("µ¥¹ÌÁö+");
+            UIManager.Instance.UpdateRemainCntText(remain_Count);
+            GameManager.Instance.playerDamage++;
+            UIManager.Instance.UpdateDamage();
+            
+        }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
             this.gameObject.SetActive(false);

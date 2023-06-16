@@ -111,7 +111,7 @@ public class DroneAI : MonoBehaviour
     
     public void OnDamageProcess()
     {
-        hp--; 
+        hp-=GameManager.Instance.playerDamage; 
         if (hp > 0)
         {
             state = DroneState.Damage; //상태를 데미지로 전환
