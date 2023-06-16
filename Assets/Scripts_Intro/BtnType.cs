@@ -64,6 +64,13 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case BTNType.RetunMain:
                 SceneManager.LoadScene(0);
                 break;
+            case BTNType.Resume:
+                UIManager.Instance.SetActiveReadyUI(false); //일시정지창 닫기
+                Time.timeScale = 1;
+                GameManager.Instance.gState = GameManager.GameState.Run;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
         }
     }
 

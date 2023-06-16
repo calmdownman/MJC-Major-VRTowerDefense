@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public GameObject alert_NS;
     public GameObject alert_Tower;
     public Slider towerHpBar;
+    public GameObject readySystem;
 
     [Header("텍스트 모음")]
     public Text txt_Level;
@@ -37,7 +38,7 @@ public class UIManager : MonoBehaviour
     public Text txt_NoChoice;
 
     [Header("숫자 조절")]
-    public int maxGameTime = 60;
+    public int maxGameTime;
     
     private int wallIndex;
     private int droneCnt;
@@ -155,4 +156,10 @@ public class UIManager : MonoBehaviour
     {
         pauseWindow.SetActive(active);
     }
+
+    public void SetActiveReadyUI(bool active)
+    {
+        readySystem.SetActive(active);
+    }
+
 }

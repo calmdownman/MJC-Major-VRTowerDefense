@@ -11,7 +11,7 @@ public class PauseSystem : MonoBehaviour
     public GameObject bomb;
     // Update is called once per frame
     void Update()
-    {
+    { 
         if(GameManager.Instance.gState != GameManager.GameState.Pause || UIManager.Instance.DroneCnt > 0) return;
         
         if(Input.GetKeyDown(KeyCode.Alpha1) && remain_Count > 0)

@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     public Image damageImage;
     public GameObject damageText;
     public GameObject gameOverUI;
+    public Text gameOverUIText;
     public int maxHP = 10; //타워의 최초 체력 
     int _hp = 0; //내부 체력
     public float damageTime = 0.1f;
@@ -26,6 +27,7 @@ public class Tower : MonoBehaviour
             
             if (_hp <= 0)
             {
+                gameOverUIText.text = "게임오버";
                 gameOverUI.SetActive(true);
                 GameManager.Instance.gState = GameManager.GameState.GameOver; //엔딩씬 넘어가기
                 Cursor.visible = true;

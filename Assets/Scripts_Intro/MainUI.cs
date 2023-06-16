@@ -10,7 +10,8 @@ public enum BTNType
     Back,
     Quit,
     Restart,
-    RetunMain
+    RetunMain,
+    Resume
 }
 public class MainUI : MonoBehaviour
 {
