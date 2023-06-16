@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        maxGameTime = 5;
+        maxGameTime = 60;
         droneCnt = 0;
         pauseWindow.SetActive(false);
         txt_Caution.SetActive(false);

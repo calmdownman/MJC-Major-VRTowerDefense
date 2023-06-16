@@ -8,10 +8,9 @@ public class ReadySystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance.gState != GameManager.GameState.Ready)
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("ESC");
-            GameManager.Instance.gState = GameManager.GameState.Ready;
             UIManager.Instance.SetActiveReadyUI(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;

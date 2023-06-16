@@ -37,6 +37,9 @@ public class TeleportStraight : MonoBehaviour
 
             if(teleportCircleUI.gameObject.activeSelf)
             {
+                Instantiate(obstacles[UIManager.Instance.WallIndex], teleportCircleUI.position, obstacles[UIManager.Instance.WallIndex].transform.rotation);
+                UIManager.Instance.UpdateItemText("없음");
+                GameManager.Instance.gState = GameManager.GameState.Pause;
                 /*if(isWarp == false) //워프 기능 사용이 아닐 때 순간 이동
                 {
                     GetComponent<CharacterController>().enabled = false;
@@ -48,9 +51,6 @@ public class TeleportStraight : MonoBehaviour
                 {
                     StartCoroutine(Warp());
                 }*/
-                Instantiate(obstacles[UIManager.Instance.WallIndex], teleportCircleUI.position, obstacles[UIManager.Instance.WallIndex].transform.rotation);
-                UIManager.Instance.UpdateItemText("없음");
-                GameManager.Instance.gState = GameManager.GameState.Pause;
             }
 
             teleportCircleUI.gameObject.SetActive(false);

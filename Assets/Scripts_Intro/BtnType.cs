@@ -5,6 +5,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
 
+public enum BTNType
+{
+    Start,
+    Option,
+    Help,
+    Sound,
+    Back,
+    Quit,
+    Restart,
+    RetunMain,
+    Resume
+}
+
 public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BTNType currentType;
@@ -13,6 +26,8 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public CanvasGroup mainGroup;
     public CanvasGroup optionGroup;
     bool isSound;
+
+    public GameObject ui_Help;
 
     public TextMeshProUGUI tmpUGUI;
     SoundManager audioSource;
@@ -67,7 +82,6 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case BTNType.Resume:
                 UIManager.Instance.SetActiveReadyUI(false); //일시정지창 닫기
                 Time.timeScale = 1;
-                GameManager.Instance.gState = GameManager.GameState.Run;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 break;
@@ -91,10 +105,18 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         buttonScale.localScale = defaultScale * 1.2f;
+        if (currentType == BTNType.Help) 
+        {
+            ui_Help.SetActive(true);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         buttonScale.localScale = defaultScale;
+        if (currentType == BTNType.Help)
+        {
+            ui_Help.SetActive(false);
+        }
     }
 }
